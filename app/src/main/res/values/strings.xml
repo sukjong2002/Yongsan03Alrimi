@@ -3,4 +3,5 @@
     <string name="title_up">등교</string>
     <string name="title_down">하교</string>
     <string name="list_name">정류소이름</string>
+    <string name="main_menu_1">정보</string>
 </resources>

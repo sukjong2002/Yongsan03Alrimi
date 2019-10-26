@@ -10,8 +10,8 @@ import java.net.URLEncoder;
 
 public class DownloadXml extends AsyncTask {
     private String key = "boirdXwYHVTjsMWaSDyBR9Cw0I4nQNYMDcNpVNRQJXYScydtWG5PJrNbMbch8hzbUkltGHDtTic8P4ow7bI64Q%3D%3D";
-    //    private String routeId = "102900004";
-    private String routeId = "100100104";       //702A
+        private String routeId = "102900004";
+//    private String routeId = "100100104";       //702A
     private String urlString = "http://ws.bus.go.kr/api/rest/buspos/getBusPosByRtid?serviceKey=" + key + "&busRouteId=" + routeId;
 
     @Override
