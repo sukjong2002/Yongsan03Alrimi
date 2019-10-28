@@ -59,7 +59,7 @@ public class list_build extends BaseAdapter {
         for (int i = 0; i < list.get(position).getDataord().size(); i++) {
             ArrayList<ArrayVO> dataord = list.get(position).getDataord();
             if(Integer.parseInt(dataord.get(i).getSectOrd()) == list.get(position).getOrd()) {
-                lineImg.setImageResource(R.mipmap.ic_bus_located);
+                lineImg.setImageResource(R.mipmap.ic_bus_located1);
                 plate.setVisibility(View.VISIBLE);
                 type.setVisibility(View.VISIBLE);
                 plate.setText(dataord.get(i).getPlateNo().substring(2));

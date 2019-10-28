@@ -11,7 +11,7 @@ import java.net.URLEncoder;
 public class DownloadXml extends AsyncTask {
     private String key = "boirdXwYHVTjsMWaSDyBR9Cw0I4nQNYMDcNpVNRQJXYScydtWG5PJrNbMbch8hzbUkltGHDtTic8P4ow7bI64Q%3D%3D";
         private String routeId = "102900004";
-//    private String routeId = "100100104";       //702A
+    //private String routeId = "100100104";       //702A
     private String urlString = "http://ws.bus.go.kr/api/rest/buspos/getBusPosByRtid?serviceKey=" + key + "&busRouteId=" + routeId;
 
     @Override
@@ -21,7 +21,7 @@ public class DownloadXml extends AsyncTask {
             StringBuilder urlBuilder = new StringBuilder("http://ws.bus.go.kr/api/rest/buspos/getBusPosByRtid"); /*URL*/
             urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + key); /*Service Key*/
             urlBuilder.append("&" + URLEncoder.encode("busRouteId", "UTF-8") + "=" + URLEncoder.encode(routeId, "UTF-8"));
-            System.out.println(urlBuilder.toString());
+            //System.out.println(urlBuilder.toString());
             URL url = new URL(urlBuilder.toString());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");

@@ -15,7 +15,7 @@ public class ParseXml {
     public JSONObject getJson() {
         xmlToJson = new XmlToJson.Builder(xml).build();
         JSONObject jsonObject = xmlToJson.toJson();
-        System.out.println(jsonObject.toString());
+        //System.out.println(jsonObject.toString());
         return jsonObject;
     }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +17,8 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.smaroid.y03noti.parse.CheckCode;
+import com.smaroid.y03noti.parse.DownloadXml;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import org.xmlpull.v1.XmlPullParser;
 
 public class MainActivity extends AppCompatActivity {
     static public final String[] LIST_DOWN = {"하얏트호텔", "필리핀대사관", "가야랑앞", "24시편의점, 디지텍고교", "성도약국", "시장", "해방촌", "녹사평역", "전쟁기념관"};
@@ -41,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getConStat(this);
+        CheckCode ck = new CheckCode();
+        String gk = ck.getCode();
+        System.out.println(gk);
+        if(!ck.getCode().equals("0")){
+            AppFinish();
+        }
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -70,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(context, "인터넷 연결을 확인해 주세요.", Toast.LENGTH_SHORT).show();
             finishAndRemoveTask();
         }
+    }
+
+    public void AppFinish() {
+        Toast.makeText(MainActivity.this, "운행 시간이 아닙니다.", Toast.LENGTH_SHORT).show();
+        finishAndRemoveTask();
     }
 
     @Override
