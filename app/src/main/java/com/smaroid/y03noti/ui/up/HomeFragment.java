@@ -15,6 +15,7 @@ import com.smaroid.y03noti.MainActivity;
 import com.smaroid.y03noti.R;
 import com.smaroid.y03noti.parse.ArrayVO;
 import com.smaroid.y03noti.parse.DownloadXml;
+import com.smaroid.y03noti.parse.GetMealArray;
 import com.smaroid.y03noti.parse.JsonToNeedArray;
 import com.smaroid.y03noti.parse.ParseXml;
 import com.smaroid.y03noti.ui.listVO;
@@ -41,9 +42,13 @@ public class HomeFragment extends Fragment {
         ListView listView = root.findViewById(R.id.upList);
 
         DownloadXml xml = new DownloadXml();
+        GetMealArray m = new GetMealArray();
         String xmltmp = null;
+        Object d = null;
         try {
             xmltmp = (String) xml.execute().get();
+            d = m.execute().get();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

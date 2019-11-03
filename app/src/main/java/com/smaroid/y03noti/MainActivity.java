@@ -19,6 +19,7 @@ import com.google.android.gms.ads.initialization.OnInitializationCompleteListene
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.smaroid.y03noti.parse.CheckCode;
 import com.smaroid.y03noti.parse.DownloadXml;
+import com.smaroid.y03noti.parse.GetMealArray;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     static public final String[] LIST_UP = {"용산CJ나인파크", "용산e편한세상", "용산전자상가17동", "신용산, 지하차도", "신용산역", "KT용산지점", "삼각지역", "전쟁기념관", "녹사평역, 용산구청", "국군재정관리단"};
     static public final int[] UP_ORD = {16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
     static public final String[] UP_CODE = {"03743", "03744", "03132", "03252", "03561", "03564", "03567", "03185", "03738", "03152"};
-    static public final String[] BIG_BUS_LIST = {"서울75사5718", "서울75사5720"};
+    static public final String[] BIG_BUS_LIST = {"서울75사5720"};
 
     private AdView mAdView;
 
@@ -71,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        GetMealArray test = new GetMealArray();
+        test.execute();
     }
 
     private void getConStat(Context context) {

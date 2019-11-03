@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
 
@@ -37,7 +38,12 @@ public class DisplayInfoActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.cardView3:
                 Intent intent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("onestore://common/product/0000743900"));
-                startActivity(intent2);
+                try {
+                    startActivity(intent2);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "원스토어가 설치되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
+                }
         }
     }
 }
