@@ -31,12 +31,17 @@ import androidx.navigation.ui.NavigationUI;
 import org.xmlpull.v1.XmlPullParser;
 
 public class MainActivity extends AppCompatActivity {
+    //하행
     static public final String[] LIST_DOWN = {"하얏트호텔", "필리핀대사관", "가야랑앞", "24시편의점, 디지텍고교", "성도약국", "시장", "해방촌", "녹사평역", "전쟁기념관"};
-    static public final int[] DOWN_ORD = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    static public final int[] DOWN_ORD = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     static public final String[] DOWN_CODE = {"03500", "03753", "03505", "03509", "03512", "03516", "03151", "03524", "03184"};
+    static public final String[] DOWN_STN_CODE = {"102900010", "102900095", "102900079", "102900007", "102900080", "102900002", "102000057", "102900064", "102000090"};
+    //상행
     static public final String[] LIST_UP = {"용산CJ나인파크", "용산e편한세상", "용산전자상가17동", "신용산, 지하차도", "신용산역", "KT용산지점", "삼각지역", "전쟁기념관", "녹사평역, 용산구청", "국군재정관리단"};
     static public final int[] UP_ORD = {16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
     static public final String[] UP_CODE = {"03743", "03744", "03132", "03252", "03561", "03564", "03567", "03185", "03738", "03152"};
+    static public final String[] UP_STN_CODE = {"102900088", "102900087", "102000038", "102000158", "102900015", "102900012", "102900058", "102000091", "102900093", "102000058" };
+
     static public final String[] BIG_BUS_LIST = {"서울75사5720"};
 
     private AdView mAdView;
