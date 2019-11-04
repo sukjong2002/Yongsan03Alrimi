@@ -1,11 +1,9 @@
 package com.smaroid.y03noti.ui.up;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,7 +18,6 @@ import com.smaroid.y03noti.parse.DownloadXml;
 import com.smaroid.y03noti.parse.GetMealArray;
 import com.smaroid.y03noti.parse.JsonToNeedArray;
 import com.smaroid.y03noti.parse.ParseXml;
-import com.smaroid.y03noti.ui.ListActivity;
 import com.smaroid.y03noti.ui.listVO;
 import com.smaroid.y03noti.ui.list_build;
 
@@ -28,13 +25,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.smaroid.y03noti.MainActivity.DOWN_ORD;
-import static com.smaroid.y03noti.MainActivity.DOWN_STN_CODE;
 import static com.smaroid.y03noti.MainActivity.LIST_DOWN;
 import static com.smaroid.y03noti.MainActivity.LIST_UP;
 import static com.smaroid.y03noti.MainActivity.UP_CODE;
 import static com.smaroid.y03noti.MainActivity.UP_ORD;
-import static com.smaroid.y03noti.MainActivity.UP_STN_CODE;
 
 public class HomeFragment extends Fragment {
 
@@ -53,7 +47,7 @@ public class HomeFragment extends Fragment {
         Object d = null;
         try {
             xmltmp = (String) xml.execute().get();
-            //d = m.execute().get();
+            d = m.execute().get();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,16 +67,6 @@ public class HomeFragment extends Fragment {
             datalist.add(new listVO(LIST_UP[i], UP_ORD[i], list, UP_CODE[i]));
         }
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), ListActivity.class);
-                intent.putExtra("stid", UP_STN_CODE[position]);
-                intent.putExtra("ord", UP_ORD[position]);
-                intent.putExtra("name", LIST_UP[position]);
-                startActivity(intent);
-            }
-        });
         list_build adapter = new list_build(datalist, this.getContext(), container);
         listView.setAdapter(adapter);
         return root;
