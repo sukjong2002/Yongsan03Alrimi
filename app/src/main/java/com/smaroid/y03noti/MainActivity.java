@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     static public final String[] UP_CODE = {"03743", "03744", "03132", "03252", "03561", "03564", "03567", "03185", "03738", "03152"};
     static public final String[] UP_STN_CODE = {"102900088", "102900087", "102000038", "102000158", "102900015", "102900012", "102900058", "102000091", "102900093", "102000058" };
 
-    static public final String[] BIG_BUS_LIST = {"서울75사5720"};
+    static public final String[] BIG_BUS_LIST = {"서울75사5720", "서울75사5717"};
 
     private AdView mAdView;
 
@@ -85,13 +85,13 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if(activeNetwork == null) {
-            Toast.makeText(context, "인터넷 연결을 확인해 주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "인터넷 연결을 확인해 주세요.", Toast.LENGTH_LONG).show();
             finishAndRemoveTask();
         }
     }
 
     public void AppFinish() {
-        Toast.makeText(MainActivity.this, "운행 시간이 아닙니다.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "운행 시간이 아닙니다.", Toast.LENGTH_LONG).show();
         finishAndRemoveTask();
     }
 
