@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_arrow_drop_down_black_24dp"
         android:title="@string/title_down" />
 
+    <item
+        android:id="@+id/navigation_lunch"
+        android:icon="@drawable/ic_lunch_black_24dp"
+        android:title="점심" />
+
 </menu>

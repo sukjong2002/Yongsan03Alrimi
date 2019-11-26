@@ -1,5 +1,6 @@
 package com.smaroid.y03noti.parse;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
@@ -25,19 +26,30 @@ public class GetMealArray extends AsyncTask {
             Elements e = meal.select("div.school_menu");
                 Elements e2 = e.select("li.bx_list");
                 for(Element e3 : e2){
-                    System.out.println(e3.getElementsByTag("strong").text() + "dff");
+                    //System.out.println(e3.getElementsByTag("strong").text() + "dff");
                     SimpleDateFormat f1 = new SimpleDateFormat("MM월 dd");
                     SimpleDateFormat f2 = new SimpleDateFormat("MM월 d");
                     Date time = new Date();
                     String t1 = f1.format(time);
                     String t2 = f2.format(time);
-                    System.out.println(t1);
-                    System.out.println(t2);
-                    System.out.println(e3.getElementsByTag("strong").text().substring(0, 6));
+                    int t1next = Integer.parseInt(f1.format(time).substring(4, 6))+1;
+                    //System.out.println(t1);
+                    //System.out.println(t2);
+                    //System.out.println(e3.getElementsByTag("strong").text().substring(0, 6));
                     if(e3.getElementsByTag("strong").text().substring(0, 6).equals(t1)) {
                         System.out.println("dkfdf");
+                        Elements e4 = e3.select("ul");
+                        String tmp = "";
+                        for (Element e5: e4) {
+                            tmp+=e5.getElementsByTag("li").text();
+                            tmp+=System.lineSeparator();
+                        }
+                        System.out.println(e3.getElementsByTag("strong").text().substring(0, 6));
+                        System.out.println(t1next);
                     //}else if(e3.getElementsByTag("strong").text().substring(0, 6).equals(t2)) {
+                        System.out.println(tmp);
                         System.out.println("ddff");
+                        return tmp;
                     }
                 }
 

@@ -16,4 +16,10 @@
         android:name="com.smaroid.y03noti.ui.down.DashboardFragment"
         android:label="@string/title_down"
         tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_lunch"
+        android:name="com.smaroid.y03noti.ui.meal.MealFragment"
+        android:label="점심"
+        tools:layout="@layout/lunch_fragment" />
 </navigation>
