@@ -57,6 +57,9 @@ public class MealFragment extends Fragment {
         SimpleDateFormat f1 = new SimpleDateFormat("MM월 dd일");
         Date time = new Date();
         String t1 = f1.format(time);
+        if(todaylunch == null) {
+            todayMeal.setText("오류 발생");
+        }
         todayDate.setText(t1);
         todayMeal.setText(todaylunch);
         return root;

@@ -28,15 +28,18 @@ public class GetMealArray extends AsyncTask {
                 for(Element e3 : e2){
                     //System.out.println(e3.getElementsByTag("strong").text() + "dff");
                     SimpleDateFormat f1 = new SimpleDateFormat("MM월 dd");
-                    SimpleDateFormat f2 = new SimpleDateFormat("MM월 d");
+                    SimpleDateFormat f2 = new SimpleDateFormat("dd");
                     Date time = new Date();
                     String t1 = f1.format(time);
-                    String t2 = f2.format(time);
+                    if(Integer.parseInt(f2.format(time)) < 10) {
+                        t1 = t1.substring(0, 4) + Integer.parseInt(f2.format(time));
+                        System.out.println(t1);
+                    }
                     int t1next = Integer.parseInt(f1.format(time).substring(4, 6))+1;
                     //System.out.println(t1);
                     //System.out.println(t2);
                     //System.out.println(e3.getElementsByTag("strong").text().substring(0, 6));
-                    if(e3.getElementsByTag("strong").text().substring(0, 6).equals(t1)) {
+                    if(e3.getElementsByTag("strong").text().substring(0, 6).equals(t1) || e3.getElementsByTag("strong").text().substring(0, 5).equals(t1)) {
                         System.out.println("dkfdf");
                         Elements e4 = e3.select("ul");
                         String tmp = "";
