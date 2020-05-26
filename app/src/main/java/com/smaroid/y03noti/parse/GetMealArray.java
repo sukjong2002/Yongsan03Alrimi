@@ -28,12 +28,23 @@ public class GetMealArray extends AsyncTask {
                 for(Element e3 : e2){
                     //System.out.println(e3.getElementsByTag("strong").text() + "dff");
                     SimpleDateFormat f1 = new SimpleDateFormat("MM월 dd");
+                    //일이 2자리수일때
                     SimpleDateFormat f2 = new SimpleDateFormat("dd");
+                    //월이 2자리수일때
+                    SimpleDateFormat f3 = new SimpleDateFormat("MM");
+                    //월이 한자리수일때
+                    SimpleDateFormat f4 = new SimpleDateFormat("M월");
                     Date time = new Date();
                     String t1 = f1.format(time);
+                    //System.out.println(f2.format(time));
+                    //일이 2자리 수가 아니어서 0을 붙여야할경우
                     if(Integer.parseInt(f2.format(time)) < 10) {
                         t1 = t1.substring(0, 4) + Integer.parseInt(f2.format(time));
                         System.out.println(t1);
+                    }
+                    //월이 2자리수가 이니어서 0을 붙여야할경우
+                    if(Integer.parseInt(f3.format(time)) < 10) {
+                        t1 = f4.format(time) + t1.substring(3, 6);
                     }
                     int t1next = Integer.parseInt(f1.format(time).substring(4, 6))+1;
                     //System.out.println(t1);

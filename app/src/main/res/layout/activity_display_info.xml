@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/mtrl_card_spacing"
             android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:theme="@style/Theme.MaterialComponents.DayNight"
             android:layout_marginRight="@dimen/mtrl_card_spacing">
 
             <LinearLayout
@@ -48,6 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/mtrl_card_spacing"
             android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:theme="@style/Theme.MaterialComponents.DayNight"
             android:layout_marginRight="@dimen/mtrl_card_spacing">
 
             <LinearLayout
@@ -79,6 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/mtrl_card_spacing"
             android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:theme="@style/Theme.MaterialComponents.DayNight"
             android:layout_marginRight="@dimen/mtrl_card_spacing">
 
             <LinearLayout
@@ -110,6 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/mtrl_card_spacing"
             android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:theme="@style/Theme.MaterialComponents.DayNight"
             android:layout_marginRight="@dimen/mtrl_card_spacing">
 
             <LinearLayout
@@ -134,6 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/mtrl_card_spacing"
             android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:theme="@style/Theme.MaterialComponents.DayNight"
             android:layout_marginRight="@dimen/mtrl_card_spacing">
 
             <LinearLayout

@@ -27,6 +27,7 @@ public class DownloadXml extends AsyncTask {
         this.stid = stid;
         this.ord = ord;
         urlString = "http://ws.bus.go.kr/api/rest/arrive/getArrInfoByRoute?serviceKey=" + key + "&stId=" + stid + "&busRouteId=" + routeId + "&ord=" + ord;
+        System.out.println("yydd" +urlString);
     }
 
     @Override
