@@ -46,22 +46,35 @@ public class MealFragment extends Fragment {
         View root = inflater.inflate(R.layout.lunch_fragment, container, false);
         TextView todayMeal = root.findViewById(R.id.todayMeal);
         TextView todayDate = root.findViewById(R.id.todayDate);
+        TextView todayCal = root.findViewById(R.id.todayCal);
+        TextView nextDate = root.findViewById(R.id.nextDate);
+        TextView nextMeal = root.findViewById(R.id.nextMeal);
+        TextView nextCal = root.findViewById(R.id.nextCal);
 
         GetMealArray test = new GetMealArray();
-        String todaylunch = null;
+        ArrayList<MealVO> todaylunch = null;
         try {
-            todaylunch = (String) test.execute().get();
+            todaylunch = (ArrayList<MealVO>) test.execute().get();
         } catch (Exception e) {
             e.printStackTrace();
         }
         SimpleDateFormat f1 = new SimpleDateFormat("MM월 dd일");
-        Date time = new Date();
-        String t1 = f1.format(time);
         if(todaylunch == null) {
             todayMeal.setText("오류 발생");
         }
-        todayDate.setText(t1);
-        todayMeal.setText(todaylunch);
+        if(todaylunch.size() >= 2) {
+            todayDate.setText(f1.format(todaylunch.get(0).getDate()));
+            todayMeal.setText(todaylunch.get(0).getMeal());
+            todayCal.setText(todaylunch.get(0).getCal());
+            nextDate.setText(f1.format(todaylunch.get(1).getDate()));
+            nextMeal.setText(todaylunch.get(1).getMeal());
+            nextCal.setText(todaylunch.get(1).getCal());
+        }else if(todaylunch.size() == 1) {
+            todayDate.setText(f1.format(todaylunch.get(0).getDate()));
+            todayMeal.setText(todaylunch.get(0).getMeal());
+        }else{
+
+        }
         return root;
     }
 }

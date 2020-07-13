@@ -1,77 +1,70 @@
 package com.smaroid.y03noti.parse;
 
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
-import com.smaroid.y03noti.MainActivity;
+import com.smaroid.y03noti.ui.meal.MealVO;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class GetMealArray extends AsyncTask {
-
     @Override
     protected Object doInBackground(Object[] objects) {
+        ArrayList<MealVO> list = new ArrayList<>();
+        SimpleDateFormat format = new SimpleDateFormat("YYYYMMdd");
+        Date time = new Date();
+        Date dayplus = new Date(time.getTime() + TimeUnit.DAYS.toMillis(5));
+        String today = format.format(time);
+        String todayplus = format.format(dayplus);
         try {
-            ArrayList<String> data = new ArrayList<>();
-            Document meal = Jsoup.connect("https://m.search.naver.com/search.naver?sm=mtp_hty.top&where=m&query=%EC%84%9C%EC%9A%B8%EB%94%94%EC%A7%80%ED%85%8D%EA%B3%A0").get();
-            Elements e = meal.select("div.school_menu");
-                Elements e2 = e.select("li.bx_list");
-                for(Element e3 : e2){
-                    //System.out.println(e3.getElementsByTag("strong").text() + "dff");
-                    SimpleDateFormat f1 = new SimpleDateFormat("MM월 dd");
-                    //일이 2자리수일때
-                    SimpleDateFormat f2 = new SimpleDateFormat("dd");
-                    //월이 2자리수일때
-                    SimpleDateFormat f3 = new SimpleDateFormat("MM");
-                    //월이 한자리수일때
-                    SimpleDateFormat f4 = new SimpleDateFormat("M월");
-                    Date time = new Date();
-                    String t1 = f1.format(time);
-                    //System.out.println(f2.format(time));
-                    //일이 2자리 수가 아니어서 0을 붙여야할경우
-                    if(Integer.parseInt(f2.format(time)) < 10) {
-                        t1 = t1.substring(0, 4) + Integer.parseInt(f2.format(time));
-                        System.out.println(t1);
-                    }
-                    //월이 2자리수가 이니어서 0을 붙여야할경우
-                    if(Integer.parseInt(f3.format(time)) < 10) {
-                        t1 = f4.format(time) + t1.substring(3, 6);
-                    }
-                    int t1next = Integer.parseInt(f1.format(time).substring(4, 6))+1;
-                    //System.out.println(t1);
-                    //System.out.println(t2);
-                    //System.out.println(e3.getElementsByTag("strong").text().substring(0, 6));
-                    if(e3.getElementsByTag("strong").text().substring(0, 6).equals(t1) || e3.getElementsByTag("strong").text().substring(0, 5).equals(t1)) {
-                        System.out.println("dkfdf");
-                        Elements e4 = e3.select("ul");
-                        String tmp = "";
-                        for (Element e5: e4) {
-                            tmp+=e5.getElementsByTag("li").text();
-                            tmp+=System.lineSeparator();
-                        }
-                        System.out.println(e3.getElementsByTag("strong").text().substring(0, 6));
-                        System.out.println(t1next);
-                    //}else if(e3.getElementsByTag("strong").text().substring(0, 6).equals(t2)) {
-                        System.out.println(tmp);
-                        System.out.println("ddff");
-                        return tmp;
-                    }
-                }
+            String neis = "https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json&KEY=ecabe857ea114a09a0db1163ae5fa947&ATPT_OFCDC_SC_CODE=B10&SD_SCHUL_CODE=7010572&MLSV_FROM_YMD="+today+"&MLSV_TO_YMD="+todayplus;
+            System.out.println(neis);
+            URL url = new URL(neis);
+            URLConnection conn = url.openConnection();
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line;
+            StringBuffer sb =
+                    new StringBuffer();
+            // read contents line by line and store in the string
+            while ((line =
+                    br.readLine()) != null) {
+                sb.append(line);
+            }
+            br.close();
 
-
-
+            JSONObject json = new JSONObject(sb.toString());
+            JSONArray ifo = json.getJSONArray("mealServiceDietInfo");
+            JSONObject ifoobj = ifo.getJSONObject(1);
+            JSONArray row = ifoobj.getJSONArray("row");
+            for (int i = 0; i<row.length(); i++) {
+                MealVO vo = new MealVO();
+                JSONObject obj = row.getJSONObject(i);
+                String meal = obj.getString("DDISH_NM");
+                meal = meal.replace("<br/>", "\n");
+                vo.setMeal(meal);
+                String dateStr = obj.getString("MLSV_YMD");
+                DateFormat stf = new SimpleDateFormat("yyyyMMdd");
+                Date mealDate = stf.parse(dateStr);
+                vo.setDate(mealDate);
+                String cal = obj.getString("CAL_INFO");
+                vo.setCal(cal);
+                list.add(vo);
+            }
+            return list;
         }catch (Exception e) {
             e.printStackTrace();
         }
+
         return null;
     }
 }
